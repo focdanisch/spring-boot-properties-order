@@ -37,28 +37,32 @@ public class TestProfileSpecificOrder {
 				.filter(prop -> prop instanceof OriginTrackedMapPropertySource)
 				.map(PropertySource::getName)
 				.collect(Collectors.toList());
-		assertThat(appPropertyNames).hasSize(6);
+		assertThat(appPropertyNames).hasSize(7);
 		assertThat(appPropertyNames.get(0))
 			.contains("classpath")
 			.doesNotContain("config")
 			.contains("application-root.properties");
 		assertThat(appPropertyNames.get(1))
-			.contains("classpath")
+			.contains("file")
 			.contains("config")
 			.contains("application-config.properties");
 		assertThat(appPropertyNames.get(2))
-			.contains("file")
-			.contains("config")
-			.contains("application-local.properties");
-		assertThat(appPropertyNames.get(3))
 			.contains("classpath")
+			.contains("config")
+			.contains("application-config.properties");
+		assertThat(appPropertyNames.get(3))
+			.contains("file")
 			.contains("config")
 			.contains("application-local.properties");
 		assertThat(appPropertyNames.get(4))
 			.contains("classpath")
-			.doesNotContain("config")
+			.contains("config")
 			.contains("application-local.properties");
 		assertThat(appPropertyNames.get(5))
+			.contains("classpath")
+			.doesNotContain("config")
+			.contains("application-local.properties");
+		assertThat(appPropertyNames.get(6))
 			.contains("classpath")
 			.doesNotContain("config")
 			.contains("application.properties");
